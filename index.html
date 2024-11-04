@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tư Vấn Tài Chính</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      /* Các kiểu CSS hiện có */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+        line-height: 1.6;
+      }
+      header {
+        background-color: #007bff;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+      }
+      nav a {
+        color: white;
+        margin: 0 15px;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      nav a:hover {
+        color: #ffcc00;
+      }
+      .login-button {
+        background-color: #ffcc00;
+        color: #333;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .login-button:hover {
+        background-color: #e0b800;
+      }
+      .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+        padding: 20px;
+      }
+      .hero {
+        background-image: url("https://example.com/financial-advice.jpg"); /* Thay đổi URL hình ảnh */
+        background-size: cover;
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        position: relative;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5); /* Tạo lớp mờ */
+      }
+      .hero h1 {
+        font-size: 2.5em;
+        margin: 0;
+        position: relative;
+        z-index: 1; /* Đưa tiêu đề lên trên lớp mờ */
+      }
+      .content {
+        margin: 20px 0;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+      .content h2 {
+        color: #007bff;
+      }
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #007bff;
+        color: white;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+      }
+
+      /* CSS cho form đăng nhập */
+      .login-form-wrapper {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        animation: fadeIn 0.5s ease forwards;
+        z-index: 2;
+      }
+      .login-form-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+      .login-form {
+        background-color: white;
+        padding: 20px;
+        width: 400px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        opacity: 0;
+        transform: scale(0.8);
+        animation: scaleIn 0.5s ease forwards;
+      }
+      /* .login-form input[type="text"],
+      .login-form input[type="password"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      } */
+      .login-btn {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .login-btn:hover {
+        background-color: #0056b3;
+      }
+      .fb-btn {
+        width: 100%;
+        padding: 10px;
+        background-color: white;
+        color: #007bff;
+        border: 1px solid #007bff;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s;
+      }
+      .fb-btn:hover {
+        background-color: #007bff;
+        color: white;
+      }
+
+      .login-form-inner {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .login-form-inner input[type="text"],
+      .login-form-inner input[type="password"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      /* Animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Tư Vấn Tài Chính</h1>
+      <nav>
+        <a href="#services">Dịch Vụ</a>
+        <a href="#about">Về Chúng Tôi</a>
+        <a href="#contact">Liên Hệ</a>
+      </nav>
+      <!-- Nút Đăng nhập -->
+      <button
+        class="login-button"
+        onclick="document.getElementById('login-form-wrapper').style.display='flex'"
+      >
+        Đăng Nhập
+      </button>
+    </header>
+
+    <div class="hero">
+      <h1>Chúng Tôi Giúp Bạn Quản Lý Tài Chính Tốt Hơn</h1>
+    </div>
+
+    <div class="container">
+      <div class="content" id="services">
+        <h2>Dịch Vụ Của Chúng Tôi</h2>
+        <p>
+          Chúng tôi cung cấp các dịch vụ tư vấn tài chính chuyên nghiệp bao gồm:
+        </p>
+        <ul>
+          <li>Tư vấn đầu tư</li>
+          <li>Quản lý tài sản</li>
+          <li>Kế hoạch hưu trí</li>
+          <li>Tư vấn thuế</li>
+          <li>Quản lý nợ</li>
+        </ul>
+      </div>
+
+      <div class="content" id="about">
+        <h2>Về Chúng Tôi</h2>
+        <p>
+          Chúng tôi là một đội ngũ chuyên gia tài chính với nhiều năm kinh
+          nghiệm trong ngành. Mục tiêu của chúng tôi là giúp khách hàng đạt được
+          sự ổn định tài chính và phát triển bền vững.
+        </p>
+      </div>
+
+      <div class="content" id="contact">
+        <h2>Liên Hệ</h2>
+        <p>
+          Để biết thêm thông tin hoặc đặt lịch hẹn tư vấn, vui lòng liên hệ với
+          chúng tôi qua:
+        </p>
+        <p>
+          Email:
+          <a href="mailto:info@tuvantaichinh.com">info@tuvantaichinh.com</a>
+        </p>
+        <p>Điện thoại: <a href="tel:+84123456789">+84 123 456 789</a></p>
+      </div>
+    </div>
+
+    <!-- Form Đăng Nhập với hiệu ứng hiện lên -->
+    <div id="login-form-wrapper" class="login-form-wrapper">
+      <div
+        class="login-form-overlay"
+        onclick="document.getElementById('login-form-wrapper').style.display='none'"
+      ></div>
+      <div class="login-form">
+        <h2>Đăng Nhập</h2>
+        <div class="login-form-inner">
+          <input
+            type="text"
+            name="username"
+            placeholder="Tên người dùng"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Mật khẩu"
+            required
+          />
+          <button class="login-btn" onclick="showMaintenanceMessage(event)">
+            Đăng Nhập
+          </button>
+          <button
+            class="fb-btn"
+            onclick="window.open('/facebook.com/index.html','', 'width=1200,height=800')"
+          >
+            <i class="fa fa-facebook-official" aria-hidden="true"></i>
+            Đăng nhập bằng Facebook
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Tư Vấn Tài Chính. Tất cả quyền được bảo lưu.</p>
+    </footer>
+
+    <script>
+      function showMaintenanceMessage(event) {
+        event.preventDefault(); // Ngăn gửi form
+        alert("Hệ thống hiện đang bảo trì. Vui lòng đăng nhập bằng Facebook.");
+      }
+    </script>
+  </body>
+</html>
